@@ -1,0 +1,13 @@
+{
+  "name": "dlv",
+  "version": "1.0.0",
+  "description": "Safely get a dot-notated property within an object.",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test"
+  },
+  "keywords": ["delve","dot notation","dot"],
+  "files": ["index.js"],
+  "author": "Jason Miller <jason@developit.ca>",
+  "license": "MIT"
+}
