@@ -1,6 +1,6 @@
 {
   "name": "dlv",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Safely get a dot-notated property within an object.",
   "main": "dist.js",
   "jsnext:main": "index.js",
