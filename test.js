@@ -1,5 +1,5 @@
 var assert = require('assert');
-var dlv = require('.');
+var delve = require('.');
 
 var obj = {
 	one: 1,
@@ -14,9 +14,14 @@ var obj = {
 	}
 };
 
+// assert equality of a given path, as dot notation and array.
 function check(path, value) {
-	assert.equal(dlv(obj, path), value);
-	console.log(' ✓ dlv(obj, "'+path+'")');
+	assert.equal(delve(obj, path), value);
+	console.log(' ✓ delve(obj, "'+path+'")');
+
+	var arr = path.split('.');
+	assert.equal(delve(obj, arr), value);
+	console.log(' ✓ delve(obj, '+JSON.stringify(arr)+')');
 }
 
 check('', undefined);

@@ -2,12 +2,26 @@
   "name": "dlv",
   "version": "1.0.0",
   "description": "Safely get a dot-notated property within an object.",
-  "main": "index.js",
+  "main": "dist.js",
+  "jsnext:main": "index.js",
   "scripts": {
+    "build": "rollup -f cjs --no-strict $npm_package_jsnext_main | uglifyjs -cm -o $npm_package_main",
+    "prepublish": "npm run build",
     "test": "node test"
   },
-  "keywords": ["delve","dot notation","dot"],
-  "files": ["index.js"],
+  "keywords": [
+    "delve",
+    "dot notation",
+    "dot"
+  ],
+  "files": [
+    "index.js",
+    "dist.js"
+  ],
   "author": "Jason Miller <jason@developit.ca>",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "rollup": "^0.34.3",
+    "uglifyjs": "^2.4.10"
+  }
 }
