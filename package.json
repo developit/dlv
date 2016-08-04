@@ -7,7 +7,8 @@
   "scripts": {
     "build": "rollup -f cjs --no-strict $npm_package_jsnext_main | uglifyjs -cm -o $npm_package_main",
     "prepublish": "npm run build",
-    "test": "node test"
+    "test": "node test",
+    "release": "npm run build && npm test && git commit -am $npm_package_version && git tag $npm_package_version && git push && git push --tags && npm publish"
   },
   "keywords": [
     "delve",
