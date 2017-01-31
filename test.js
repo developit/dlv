@@ -21,10 +21,11 @@ var obj = {
 //optional third argument is for default when object is not found
 function check(path, value, def) {
 
-	assert.strictEqual(delve(obj, path, def), value);
+	var out = delve(obj, path, def);
+	assert.strictEqual(out, value, 'delve(obj, "'+path+'") should be '+value+', got '+out);
 	console.log(' ✓ delve(obj, "'+path+'"'+ (def ? ', "'+def+'"' : '') + ')');
 
-	if(path) {
+	if (path) {
 		var arr = path.split('.');
 		assert.strictEqual(delve(obj, arr, def), value);
 		console.log(' ✓ delve(obj, ' + JSON.stringify(arr) + (def ? ', "'+def+'"' : '') + ')');
