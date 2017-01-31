@@ -4,7 +4,7 @@
 
 ### Why?
 
-Smallest possible implementation: only **165 bytes.**
+Smallest possible implementation: only **128 bytes.**
 
 You could write this yourself, but then you'd have to write [tests].
 
