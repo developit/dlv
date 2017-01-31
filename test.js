@@ -52,9 +52,9 @@ check('zero', 0, 'foo');
 check('a.badkey', 'foo', 'foo');
 check('a.badkey.anotherbadkey', 'foo', 'foo');
 
-//check undefined key doesn't throw errors and uses default
-check(undefined, undefined);
-check(undefined, 'foo', 'foo');
+//check undefined key throws an error
+assert.throws(delve.bind(this, obj, undefined));
+assert.throws(delve.bind(this, obj, undefined, 'foo'));
 
 //check undefined obj doesn't throw errors and uses default
 var backupObj = obj;
