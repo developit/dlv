@@ -1,5 +1,7 @@
-export default function dlv(obj, key) {
+export default function dlv(obj, key, def) {
+	if(!obj || !key) return def;
 	if (key.split) key = key.split('.');
-	for (var i=0; i<key.length && obj; i++) obj = obj[key[i]];
-	return obj;
+	var i=0, keyLength=key.length;
+	for (; i<keyLength && obj.hasOwnProperty(key[i]); obj = obj[key[i++]]) ;
+	return i===keyLength ? obj : def;
 }
