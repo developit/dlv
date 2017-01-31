@@ -1,6 +1,6 @@
 # `dlv(obj, keypath)` [![NPM](https://img.shields.io/npm/v/dlv.svg)](https://npmjs.com/package/dlv) [![Build](https://travis-ci.org/developit/dlv.svg?branch=master)](https://travis-ci.org/developit/dlv)
 
-> Safely get a dot-notated path within a nested object, with ability to return a default if the full key path does not exist
+> Safely get a dot-notated path within a nested object, with ability to return a default if the full key path does not exist or the value is undefined
 
 ### Why?
 
@@ -26,7 +26,8 @@ let obj = {
 	a: {
 		b: {
 			c: 1
-			e: undefined
+			d: undefined
+			e: null
 		}
 	}
 };
@@ -40,14 +41,16 @@ delve(obj, ['a', 'b', 'c']) === 1;
 delve(obj, 'a.b') === obj.a.b;
 
 //returns undefined if the full key path does not exist and no default is specified
-delve(obj, 'a.b.c.d') === undefined;
+delve(obj, 'a.b.c.f') === undefined;
 
 //optional third parameter for default if the full key in path is missing
+delve(obj, 'a.b.c.f', 'foo') === 'foo';
+
+//or if the key exists but the value is undefined
 delve(obj, 'a.b.c.d', 'foo') === 'foo';
 
-//default is only used if full keypath does not exist.
-//Non-truthy values are still returned if they exist at the full keypath
-delve(obj, 'a.b.c.e', 'foo') === undefined;
+//Non-truthy defined values are still returned if they exist at the full keypath
+delve(obj, 'a.b.c.e', 'foo') === null;
 
 //undefined obj or key returns undefined, unless a default is supplied
 delve(undefined, 'a.b.c') === undefined;

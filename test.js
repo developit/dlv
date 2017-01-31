@@ -5,6 +5,7 @@ var obj = {
 	undef: undefined,
 	zero: 0,
 	one: 1,
+	n: null,
 	a: {
 		two: 2,
 		b: {
@@ -20,16 +21,18 @@ var obj = {
 //optional third argument is for default when object is not found
 function check(path, value, def) {
 
-	assert.equal(delve(obj, path, def), value);
-	console.log(' ✓ delve(obj, "'+path+'")');
+	assert.strictEqual(delve(obj, path, def), value);
+	console.log(' ✓ delve(obj, "'+path+'"'+ (def ? ', "'+def+'"' : '') + ')');
 
 	if(path) {
 		var arr = path.split('.');
-		assert.equal(delve(obj, arr, def), value);
+		assert.strictEqual(delve(obj, arr, def), value);
+		console.log(' ✓ delve(obj, ' + JSON.stringify(arr) + (def ? ', "'+def+'"' : '') + ')');
 		console.log(' ✓ delve(obj, '+JSON.stringify(arr)+')');
 	}
 }
 
+console.log("> No Defaults");
 check('', undefined);
 check('one', obj.one);
 check('one.two', undefined);
@@ -41,8 +44,10 @@ check('a.b.c', obj.a.b.c);
 check('a.b.c.four', obj.a.b.c.four);
 
 //test defaults
+console.log("\n> With Defaults");
 check('', 'foo', 'foo');
-check('undef', undefined, 'foo');
+check('undef', 'foo', 'foo');
+check('n', null, 'foo');
 check('zero', 0, 'foo');
 check('a.badkey', 'foo', 'foo');
 check('a.badkey.anotherbadkey', 'foo', 'foo');
