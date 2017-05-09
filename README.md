@@ -1,5 +1,7 @@
 # `dlv(obj, keypath)` [![NPM](https://img.shields.io/npm/v/dlv.svg)](https://npmjs.com/package/dlv) [![Build](https://travis-ci.org/developit/dlv.svg?branch=master)](https://travis-ci.org/developit/dlv)
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/developit/dlv.svg)](https://greenkeeper.io/)
+
 > Safely get a dot-notated path within a nested object, with ability to return a default if the full key path does not exist or the value is undefined
 
 ### Why?
