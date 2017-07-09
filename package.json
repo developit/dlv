@@ -26,7 +26,7 @@
   "repository": "developit/dlv",
   "license": "MIT",
   "devDependencies": {
-    "rollup": "^0.41.6",
+    "rollup": "^0.43.1",
     "uglifyjs": "^2.4.10"
   }
 }
