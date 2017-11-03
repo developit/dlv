@@ -1,6 +1,5 @@
-export default function dlv(obj, key, def, p) {
-	p = 0;
-	key = key.split ? key.split('.') : key;
-	while (obj && p<key.length) obj = obj[key[p++]];
-	return obj===undefined ? def : obj;
+export default function dlv(obj, key, def) {
+	return (obj = (key.split ? key.split('.') : key).reduce(function (obj, k) {
+  	return obj && obj[k]
+	}, obj)) === undefined ? def : obj;
 }
