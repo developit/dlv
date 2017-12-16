@@ -6,6 +6,7 @@ var obj = {
 	zero: 0,
 	one: 1,
 	n: null,
+	f: false,
 	a: {
 		two: 2,
 		b: {
@@ -45,6 +46,8 @@ check('a.b.c', obj.a.b.c);
 check('a.b.c.four', obj.a.b.c.four);
 check('n', obj.n);
 check('n.badkey', undefined);
+check('f', false);
+check('f.badkey', undefined);
 
 //test defaults
 console.log("\n> With Defaults");
@@ -55,6 +58,8 @@ check('n.badkey', 'foo', 'foo');
 check('zero', 0, 'foo');
 check('a.badkey', 'foo', 'foo');
 check('a.badkey.anotherbadkey', 'foo', 'foo');
+check('f', false, 'foo');
+check('f.badkey', 'foo', 'foo');
 
 //check undefined key throws an error
 assert.throws(delve.bind(this, obj, undefined));
