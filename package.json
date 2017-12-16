@@ -27,6 +27,6 @@
   "license": "MIT",
   "devDependencies": {
     "rollup": "^0.41.6",
-    "uglifyjs": "^2.4.10"
+    "uglify-js": "^3.2.2"
   }
 }
