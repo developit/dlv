@@ -43,12 +43,15 @@ check('a.b', obj.a.b);
 check('a.b.three', obj.a.b.three);
 check('a.b.c', obj.a.b.c);
 check('a.b.c.four', obj.a.b.c.four);
+check('n', obj.n);
+check('n.badkey', undefined);
 
 //test defaults
 console.log("\n> With Defaults");
 check('', 'foo', 'foo');
 check('undef', 'foo', 'foo');
 check('n', null, 'foo');
+check('n.badkey', 'foo', 'foo');
 check('zero', 0, 'foo');
 check('a.badkey', 'foo', 'foo');
 check('a.badkey.anotherbadkey', 'foo', 'foo');
