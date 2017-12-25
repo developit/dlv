@@ -4,11 +4,10 @@
   "description": "Safely get a dot-notated property within an object.",
   "main": "dist/dlv.js",
   "browser": "dist/dlv.umd.js",
-  "jsnext:main": "index.js",
+  "module": "dist/dlv.es.js",
   "scripts": {
-    "build": "mkdir -p dist && npm run -s build:cjs && npm run -s build:umd",
-    "build:cjs": "rollup -i $npm_package_jsnext_main -f cjs --no-strict | uglifyjs -cm -o $npm_package_main",
-    "build:umd": "rollup -i $npm_package_jsnext_main -n $npm_package_name -f umd --no-strict | uglifyjs -cm -o $npm_package_browser",
+    "dev": "microbundle watch",
+    "build": "microbundle",
     "prepublish": "npm run build",
     "test": "node test",
     "release": "npm run build && npm test && git commit -am $npm_package_version && git tag $npm_package_version && git push && git push --tags && npm publish"
@@ -26,7 +25,6 @@
   "repository": "developit/dlv",
   "license": "MIT",
   "devDependencies": {
-    "rollup": "^0.41.6",
-    "uglify-js": "^3.2.2"
+    "microbundle": "^0.2.4"
   }
 }
