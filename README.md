@@ -61,9 +61,10 @@ delve(obj, undefined, 'foo') === 'foo';
 ```
 
 
-### Setter Counterpart
+### Setter Counterparts
 
-[bury](https://github.com/kalmbach/bury) by [@kalmbach](https://github.com/kalmbach) does the opposite of `dlv` and is implemented in a very similar manner.
+- [dset](https://github.com/lukeed/dset) by [@lukeed](https://github.com/lukeed) is the spiritual "set" counterpart of `dlv` and very fast.
+- [bury](https://github.com/kalmbach/bury) by [@kalmbach](https://github.com/kalmbach) does the opposite of `dlv` and is implemented in a very similar manner.
 
 
 ### License
