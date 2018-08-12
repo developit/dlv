@@ -27,8 +27,8 @@ import delve from 'dlv';
 let obj = {
 	a: {
 		b: {
-			c: 1
-			d: undefined
+			c: 1,
+			d: undefined,
 			e: null
 		}
 	}
