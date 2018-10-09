@@ -14,7 +14,11 @@ var obj = {
 			c: {
 				four: 4
 			}
-		}
+		},
+		d: [
+			{five: 5},
+			{six: 6}
+		]
 	}
 };
 
@@ -27,7 +31,7 @@ function check(path, value, def) {
 	console.log(' ✓ delve(obj, "'+path+'"'+ (def ? ', "'+def+'"' : '') + ')');
 
 	if (path) {
-		var arr = path.split('.');
+		var arr = path.split(/\W+/);
 		assert.strictEqual(delve(obj, arr, def), value);
 		console.log(' ✓ delve(obj, ' + JSON.stringify(arr) + (def ? ', "'+def+'"' : '') + ')');
 		console.log(' ✓ delve(obj, '+JSON.stringify(arr)+')');
@@ -44,6 +48,7 @@ check('a.b', obj.a.b);
 check('a.b.three', obj.a.b.three);
 check('a.b.c', obj.a.b.c);
 check('a.b.c.four', obj.a.b.c.four);
+check('a.d[1].six', obj.a.d[1].six);
 check('n', obj.n);
 check('n.badkey', undefined);
 check('f', false);
@@ -58,6 +63,7 @@ check('n.badkey', 'foo', 'foo');
 check('zero', 0, 'foo');
 check('a.badkey', 'foo', 'foo');
 check('a.badkey.anotherbadkey', 'foo', 'foo');
+check('a.d[2].missing', 'foo', 'foo');
 check('f', false, 'foo');
 check('f.badkey', 'foo', 'foo');
 
