@@ -5,7 +5,7 @@
 
 ### Why?
 
-Smallest possible implementation: only **126 bytes.**
+Smallest possible implementation: only **130 bytes.**
 
 You could write this yourself, but then you'd have to write [tests].
 
@@ -27,8 +27,8 @@ import delve from 'dlv';
 let obj = {
 	a: {
 		b: {
-			c: 1
-			d: undefined
+			c: 1,
+			d: undefined,
 			e: null
 		}
 	}
@@ -61,9 +61,10 @@ delve(obj, undefined, 'foo') === 'foo';
 ```
 
 
-### Setter Counterpart
+### Setter Counterparts
 
-[bury](https://github.com/kalmbach/bury) by [@kalmbach](https://github.com/kalmbach) does the opposite of `dlv` and is implemented in a very similar manner.
+- [dset](https://github.com/lukeed/dset) by [@lukeed](https://github.com/lukeed) is the spiritual "set" counterpart of `dlv` and very fast.
+- [bury](https://github.com/kalmbach/bury) by [@kalmbach](https://github.com/kalmbach) does the opposite of `dlv` and is implemented in a very similar manner.
 
 
 ### License
