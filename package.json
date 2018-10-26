@@ -25,6 +25,6 @@
   "repository": "developit/dlv",
   "license": "MIT",
   "devDependencies": {
-    "microbundle": "^0.4.1"
+    "microbundle": "^0.7.0"
   }
 }
