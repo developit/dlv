@@ -5,7 +5,7 @@
 
 ### Why?
 
-Smallest possible implementation: only **130 bytes.**
+Smallest possible implementation: only **153 bytes.**
 
 You could write this yourself, but then you'd have to write [tests].
 
