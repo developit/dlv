@@ -31,7 +31,7 @@ function check(path, value, def) {
 	console.log(' ✓ delve(obj, "'+path+'"'+ (def ? ', "'+def+'"' : '') + ')');
 
 	if (path) {
-		var arr = path.replace(/\[([\w\d]+)\]/g, '.$1').split(".");
+		var arr = path.replace(/\[("|')?([^\[\]]+)\1\]/g, '.$2').split(".");
 		assert.strictEqual(delve(obj, arr, def), value);
 		console.log(' ✓ delve(obj, ' + JSON.stringify(arr) + (def ? ', "'+def+'"' : '') + ')');
 		console.log(' ✓ delve(obj, '+JSON.stringify(arr)+')');
@@ -53,6 +53,9 @@ check('n.badkey', undefined);
 check('f', false);
 check('f.badkey', undefined);
 check('foo.some property', obj.foo["some property"]);
+check('foo["some property"]', obj.foo["some property"]);
+check('foo[\'some property\']', obj.foo["some property"]);
+check('foo[some property]', obj.foo["some property"]);
 check('arr[1]', obj.arr[1]);
 check('arr[2][1].bar', obj.arr[2][1].bar);
 check('arr[2][1].deep[1]', obj.arr[2][1].deep[1]);
