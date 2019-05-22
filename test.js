@@ -15,7 +15,11 @@ var obj = {
 				four: 4
 			}
 		}
-	}
+	},
+	foo: {
+		"some property": 8
+	},
+	arr: [4, 3, [9, { bar: false, deep: [false, true] }, 7]]
 };
 
 // assert equality of a given path, as dot notation and array.
@@ -27,7 +31,7 @@ function check(path, value, def) {
 	console.log(' ✓ delve(obj, "'+path+'"'+ (def ? ', "'+def+'"' : '') + ')');
 
 	if (path) {
-		var arr = path.split('.');
+		var arr = path.replace(/\[("|')?([^\[\]]+)\1\]/g, '.$2').split(".");
 		assert.strictEqual(delve(obj, arr, def), value);
 		console.log(' ✓ delve(obj, ' + JSON.stringify(arr) + (def ? ', "'+def+'"' : '') + ')');
 		console.log(' ✓ delve(obj, '+JSON.stringify(arr)+')');
@@ -48,6 +52,13 @@ check('n', obj.n);
 check('n.badkey', undefined);
 check('f', false);
 check('f.badkey', undefined);
+check('foo.some property', obj.foo["some property"]);
+check('foo["some property"]', obj.foo["some property"]);
+check('foo[\'some property\']', obj.foo["some property"]);
+check('foo[some property]', obj.foo["some property"]);
+check('arr[1]', obj.arr[1]);
+check('arr[2][1].bar', obj.arr[2][1].bar);
+check('arr[2][1].deep[1]', obj.arr[2][1].deep[1]);
 
 //test defaults
 console.log("\n> With Defaults");

@@ -1,11 +1,11 @@
 # `dlv(obj, keypath)` [![NPM](https://img.shields.io/npm/v/dlv.svg)](https://npmjs.com/package/dlv) [![Build](https://travis-ci.org/developit/dlv.svg?branch=master)](https://travis-ci.org/developit/dlv)
 
-> Safely get a dot-notated path within a nested object, with ability to return a default if the full key path does not exist or the value is undefined
+> Safely get a path-specified value within a nested object, with ability to return a default if the full key path does not exist or the value is undefined
 
 
 ### Why?
 
-Smallest possible implementation: only **130 bytes.**
+Smallest possible implementation: only **160 bytes.**
 
 You could write this yourself, but then you'd have to write [tests].
 
@@ -29,7 +29,11 @@ let obj = {
 		b: {
 			c: 1,
 			d: undefined,
-			e: null
+			e: null,
+			x: [
+				{ y: 8 },
+				{ z: 9 }
+			]
 		}
 	}
 };
@@ -42,11 +46,15 @@ delve(obj, ['a', 'b', 'c']) === 1;
 
 delve(obj, 'a.b') === obj.a.b;
 
+//or access nested objects within an array
+delve(obj, 'a.b.x[1].z') === 9;
+
 //returns undefined if the full key path does not exist and no default is specified
 delve(obj, 'a.b.f') === undefined;
 
 //optional third parameter for default if the full key in path is missing
 delve(obj, 'a.b.f', 'foo') === 'foo';
+delve(obj, 'a.b.x[2].f', 'foo') === 'foo';
 
 //or if the key exists but the value is undefined
 delve(obj, 'a.b.d', 'foo') === 'foo';
