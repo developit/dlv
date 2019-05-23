@@ -1,7 +1,7 @@
-export default function dlv(obj, key, def, p, undef) {
+export default function dlv(obj, key, def, undef) {
 	key = key.split ? key.split('.') : key;
-	for (p = 0; p < key.length; p++) {
-		obj = obj ? obj[key[p]] : undef;
-	}
+	obj = key.reduce(function(obj, p) {
+		return obj ? obj[p] : undef;
+	}, obj);
 	return obj === undef ? def : obj;
 }
