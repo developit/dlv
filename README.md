@@ -54,10 +54,12 @@ delve(obj, 'a.b.d', 'foo') === 'foo';
 //Non-truthy defined values are still returned if they exist at the full keypath
 delve(obj, 'a.b.e', 'foo') === null;
 
-//undefined obj or key returns undefined, unless a default is supplied
+//undefined obj returns undefined, unless a default is supplied
 delve(undefined, 'a.b.c') === undefined;
 delve(undefined, 'a.b.c', 'foo') === 'foo';
-delve(obj, undefined, 'foo') === 'foo';
+
+//an undefined key throws a TypeError, even if a default is supplied
+delve(obj, undefined); // throws TypeError
 ```
 
 
